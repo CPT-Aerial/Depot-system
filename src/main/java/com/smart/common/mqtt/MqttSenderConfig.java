@@ -59,6 +59,7 @@ public class MqttSenderConfig {
         MqttPahoMessageHandler messageHandler = new MqttPahoMessageHandler(clientId, mqttClientFactory());
         messageHandler.setAsync(true);
         messageHandler.setDefaultTopic(defaultTopic);
+        log.info("信息");
         return messageHandler;
     }
 
