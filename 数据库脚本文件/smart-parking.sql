@@ -1,0 +1,735 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : mysql
+ Source Server Type    : MySQL
+ Source Server Version : 80035
+ Source Host           : localhost:3306
+ Source Schema         : smart-parking
+
+ Target Server Type    : MySQL
+ Target Server Version : 80035
+ File Encoding         : 65001
+
+ Date: 14/02/2024 18:43:27
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for app_car_manage
+-- ----------------------------
+DROP TABLE IF EXISTS `app_car_manage`;
+CREATE TABLE `app_car_manage`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `gender` varchar(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `gmt_create` datetime(0) DEFAULT NULL,
+  `gmt_modified` datetime(0) DEFAULT NULL,
+  `name` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `nickname` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `org_id` bigint(0) NOT NULL,
+  `org_name` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `park_manage_id` bigint(0) NOT NULL,
+  `park_manage_name` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `parking_lot` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `plate_number` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `remark` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `status` smallint(0) DEFAULT NULL,
+  `type` smallint(0) DEFAULT NULL,
+  `user_id_create` bigint(0) DEFAULT NULL,
+  `validity_time` datetime(0) DEFAULT NULL,
+  `mobile` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of app_car_manage
+-- ----------------------------
+INSERT INTO `app_car_manage` VALUES (1, '1', '2024-02-01 21:58:50', '2024-02-13 21:46:39', NULL, '李宏福', 2, '北京林业大学东区', 2, '北京林业大学东区停车场', '001', '京N8P8F8', NULL, 1, 1, NULL, '2025-04-08 00:00:00', '17611090137');
+INSERT INTO `app_car_manage` VALUES (2, '1', '2024-02-13 21:48:13', '2024-02-13 21:48:13', NULL, '张三', 3, '北京林业大学西区', 3, '北京林业大学西区停车场', '098', '京Q07ZX3', NULL, 1, 0, NULL, '2026-02-11 00:00:00', '1762317301');
+INSERT INTO `app_car_manage` VALUES (3, '0', '2024-02-13 21:49:54', '2024-02-13 21:49:54', NULL, '王冰', 2, '北京林业大学东区', 2, '北京林业大学东区停车场', '099', '京N9MB00', NULL, 1, 0, NULL, '2025-02-10 00:00:00', '19209978056');
+INSERT INTO `app_car_manage` VALUES (4, '1', '2024-02-13 21:51:14', '2024-02-13 21:51:14', NULL, '杨建斌', 4, '静淑苑小区', 5, '静淑苑小区停车场', '007', '京A4422', NULL, 1, 0, NULL, '2024-07-18 00:00:00', '15674898765');
+INSERT INTO `app_car_manage` VALUES (5, '0', '2024-02-13 21:52:57', '2024-02-13 21:52:57', NULL, '郭欢', 4, '静淑苑小区', 5, '静淑苑小区停车场', '074', '京QT7IA8', NULL, 1, 0, NULL, '2024-03-07 00:00:00', '18645098803');
+INSERT INTO `app_car_manage` VALUES (6, '1', '2024-02-13 21:54:26', '2024-02-13 21:54:26', NULL, '张有志', 4, '静淑苑小区', 5, '静淑苑小区停车场', '192', '京HLL9999', NULL, 1, 0, NULL, '2025-02-17 00:00:00', '15674389765');
+INSERT INTO `app_car_manage` VALUES (7, '1', '2024-02-13 21:55:29', '2024-02-13 21:55:29', NULL, '王华', 6, '金码大厦', 6, '金码大厦', '062', '京AB2090', NULL, 1, 0, NULL, '2024-12-13 00:00:00', '1897654292');
+INSERT INTO `app_car_manage` VALUES (8, '0', '2024-02-13 21:56:21', '2024-02-13 21:56:21', NULL, '梁芳', 6, '金码大厦', 6, '金码大厦', '078', '京LC3778', NULL, 1, 0, NULL, '2024-05-31 00:00:00', '13027012941');
+INSERT INTO `app_car_manage` VALUES (9, '1', '2024-02-13 21:57:18', '2024-02-13 21:57:18', NULL, '王新', 7, '弘彧大厦', 7, '弘彧大厦', '002', '京POF930', NULL, 1, 1, NULL, '2026-02-18 00:00:00', '19898978223');
+INSERT INTO `app_car_manage` VALUES (10, '1', '2024-02-13 21:58:21', '2024-02-13 21:58:21', NULL, '赵天乐', 7, '弘彧大厦', 7, '弘彧大厦', '199', '鲁A686EJ', NULL, 1, 0, NULL, '2024-04-12 00:00:00', '18902317312');
+
+-- ----------------------------
+-- Table structure for app_car_park_manage
+-- ----------------------------
+DROP TABLE IF EXISTS `app_car_park_manage`;
+CREATE TABLE `app_car_park_manage`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `free_time` int(0) DEFAULT NULL,
+  `gmt_create` datetime(0) DEFAULT NULL,
+  `gmt_modified` datetime(0) DEFAULT NULL,
+  `max_money` decimal(18, 2) DEFAULT NULL,
+  `name` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `org_id` bigint(0) NOT NULL,
+  `org_name` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `parking_space_number` int(0) DEFAULT NULL,
+  `status` smallint(0) DEFAULT NULL,
+  `time_unit` int(0) DEFAULT NULL,
+  `unit_cost` decimal(18, 2) DEFAULT NULL,
+  `user_id_create` bigint(0) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of app_car_park_manage
+-- ----------------------------
+INSERT INTO `app_car_park_manage` VALUES (2, 60, '2024-02-01 21:52:08', '2024-02-13 21:40:30', 200.00, '北京林业大学东区停车场', 2, '北京林业大学东区', 100, 1, 30, 5.00, NULL);
+INSERT INTO `app_car_park_manage` VALUES (3, 60, '2024-02-13 21:41:07', '2024-02-13 21:41:07', 200.00, '北京林业大学西区停车场', 3, '北京林业大学西区', 90, 1, 30, 5.00, NULL);
+INSERT INTO `app_car_park_manage` VALUES (4, 30, '2024-02-13 21:42:03', '2024-02-13 21:42:03', 200.00, '五道口购物中心地下停车场', 5, '五道口购物中心', 180, 1, 30, 6.00, NULL);
+INSERT INTO `app_car_park_manage` VALUES (5, 60, '2024-02-13 21:42:46', '2024-02-13 21:42:46', 200.00, '静淑苑小区停车场', 4, '静淑苑小区', 400, 1, 30, 4.00, NULL);
+INSERT INTO `app_car_park_manage` VALUES (6, 60, '2024-02-13 21:44:25', '2024-02-13 21:44:25', 220.00, '金码大厦', 6, '金码大厦', 250, 1, 30, 4.00, NULL);
+INSERT INTO `app_car_park_manage` VALUES (7, 30, '2024-02-13 21:45:02', '2024-02-13 21:45:02', 200.00, '弘彧大厦', 7, '弘彧大厦', 350, 1, 30, 2.00, NULL);
+
+-- ----------------------------
+-- Table structure for app_car_parking_record
+-- ----------------------------
+DROP TABLE IF EXISTS `app_car_parking_record`;
+CREATE TABLE `app_car_parking_record`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `cost` decimal(18, 2) DEFAULT NULL,
+  `gmt_into` datetime(0) DEFAULT NULL,
+  `gmt_out` datetime(0) DEFAULT NULL,
+  `org_id` bigint(0) NOT NULL,
+  `org_name` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `park_manage_id` bigint(0) NOT NULL,
+  `park_manage_name` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `plate_number` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `type` smallint(0) DEFAULT NULL,
+  `order_no` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of app_car_parking_record
+-- ----------------------------
+INSERT INTO `app_car_parking_record` VALUES (4, 150.00, '2024-02-13 22:00:41', '2024-02-14 13:53:01', 2, '北京林业大学东区', 2, '北京林业大学东区停车场', '京N8P8F8', 1, NULL);
+INSERT INTO `app_car_parking_record` VALUES (5, 150.00, '2024-02-13 22:00:59', '2024-02-14 13:52:48', 2, '北京林业大学东区', 2, '北京林业大学东区停车场', '京Q07ZX3', 2, NULL);
+INSERT INTO `app_car_parking_record` VALUES (6, 150.00, '2024-02-13 22:01:21', '2024-02-14 13:52:33', 2, '北京林业大学东区', 2, '北京林业大学东区停车场', '京N9MB00', 0, NULL);
+INSERT INTO `app_car_parking_record` VALUES (7, 120.00, '2024-02-13 22:01:35', '2024-02-14 13:52:20', 6, '金码大厦', 6, '金码大厦', '沪A000A0', 2, NULL);
+INSERT INTO `app_car_parking_record` VALUES (8, 116.00, '2024-02-13 22:08:02', '2024-02-14 13:52:11', 6, '金码大厦', 6, '金码大厦', '湘LFK911', 2, NULL);
+INSERT INTO `app_car_parking_record` VALUES (9, 12.00, '2024-02-14 13:53:47', '2024-02-14 15:13:42', 5, '五道口购物中心', 4, '五道口购物中心地下停车场', '豫F96669', 2, NULL);
+INSERT INTO `app_car_parking_record` VALUES (10, 12.00, '2024-02-14 13:53:53', '2024-02-14 15:13:35', 5, '五道口购物中心', 4, '五道口购物中心地下停车场', '京Y02121', 2, NULL);
+INSERT INTO `app_car_parking_record` VALUES (11, 4.00, '2024-02-14 13:54:01', '2024-02-14 15:13:21', 4, '静淑苑小区', 5, '静淑苑小区停车场', '京HL9999', 2, NULL);
+INSERT INTO `app_car_parking_record` VALUES (12, 0.00, '2024-02-14 14:45:47', '2024-02-14 15:13:01', 3, '北京林业大学西区', 3, '北京林业大学西区停车场', '京QT71A8', 2, NULL);
+
+-- ----------------------------
+-- Table structure for app_order
+-- ----------------------------
+DROP TABLE IF EXISTS `app_order`;
+CREATE TABLE `app_order`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `body` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `gmt_create` datetime(0) DEFAULT NULL,
+  `order_no` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `org_Id` bigint(0) NOT NULL,
+  `park_manage_id` bigint(0) NOT NULL,
+  `plate_number` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `status` smallint(0) DEFAULT NULL,
+  `total_Fee` decimal(18, 2) DEFAULT NULL,
+  `type` smallint(0) DEFAULT NULL,
+  `user_create` bigint(0) DEFAULT NULL,
+  `validity_time` datetime(0) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 203 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of app_order
+-- ----------------------------
+INSERT INTO `app_order` VALUES (1, '{}', '2024-01-01 15:33:25', '123123123', 38, 2, '京N267EF', NULL, 1, 35.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (2, NULL, '2024-01-01 15:33:25', '3323781', 38, 2, '京N267EF', NULL, 1, 42.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (3, NULL, '2024-01-01 15:33:25', '8595363', 38, 2, '京N267EF', NULL, 1, 30.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (4, NULL, '2024-01-01 15:33:25', '6104494', 38, 2, '京N267EF', NULL, 1, 87.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (5, NULL, '2024-01-01 15:33:25', '5742260', 38, 2, '京N267EF', NULL, 1, 87.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (6, NULL, '2024-01-17 04:25:30', '1358989', 38, 2, '京N267EF', NULL, 1, 58.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (7, NULL, '2024-01-17 04:25:30', '4582642', 36, 2, '京N267EF', NULL, 0, 96.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (8, NULL, '2024-01-17 04:25:30', '1815860', 38, 2, '京N267EF', NULL, 1, 77.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (9, NULL, '2024-01-17 04:25:30', '9814327', 38, 2, '京N267EF', NULL, 1, 12.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (10, NULL, '2024-01-17 04:25:30', '4919506', 36, 2, '京N267EF', NULL, 1, 61.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (11, NULL, '2024-01-17 04:25:30', '1251781', 38, 2, '京N267EF', NULL, 1, 11.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (12, NULL, '2024-02-02 10:58:25', '4812588', 36, 2, '京N267EF', NULL, 1, 34.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (13, NULL, '2024-02-02 10:58:25', '3467327', 38, 2, '京N267EF', NULL, 1, 85.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (14, NULL, '2024-02-02 10:58:25', '2649143', 38, 2, '京N267EF', NULL, 1, 55.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (15, NULL, '2024-02-02 10:58:25', '8463069', 38, 2, '京N267EF', NULL, 1, 13.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (16, NULL, '2024-02-02 10:58:25', '9374020', 38, 2, '京N267EF', NULL, 1, 10.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (17, NULL, '2024-02-02 10:58:25', '8453670', 36, 2, '京N267EF', NULL, 1, 74.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (18, NULL, '2024-02-02 10:58:25', '2103119', 38, 2, '京N267EF', NULL, 1, 88.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (19, NULL, '2024-02-02 10:58:25', '3525761', 36, 2, '京N267EF', NULL, 1, 53.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (20, NULL, '2024-02-02 10:58:25', '1828545', 36, 2, '京N267EF', NULL, 1, 98.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (21, NULL, '2024-02-02 10:58:25', '5716978', 38, 2, '京N267EF', NULL, 1, 56.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (22, NULL, '2024-02-02 10:58:25', '6562290', 38, 2, '京N267EF', NULL, 1, 46.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (23, NULL, '2024-02-02 10:58:25', '3708834', 36, 2, '京N267EF', NULL, 1, 51.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (24, NULL, '2024-02-02 10:58:25', '5037663', 38, 2, '京N267EF', NULL, 1, 37.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (25, NULL, '2024-02-02 10:58:25', '5809216', 36, 2, '京N267EF', NULL, 1, 13.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (26, NULL, '2024-02-02 10:58:25', '9589123', 36, 2, '京N267EF', NULL, 1, 43.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (27, NULL, '2024-02-02 10:58:25', '1175913', 38, 2, '京N267EF', NULL, 1, 83.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (28, NULL, '2024-02-07 19:29:18', '2292145', 36, 2, '京N267EF', NULL, 1, 39.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (29, NULL, '2024-02-07 19:29:18', '6980470', 36, 2, '京N267EF', NULL, 1, 80.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (30, NULL, '2024-02-07 19:29:18', '1368118', 36, 2, '京N267EF', NULL, 1, 88.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (31, NULL, '2024-02-07 19:29:18', '6118498', 36, 2, '京N267EF', NULL, 0, 59.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (32, NULL, '2024-02-07 19:29:18', '4906716', 36, 2, '京N267EF', NULL, 1, 31.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (33, NULL, '2024-02-07 19:29:18', '6864885', 38, 2, '京N267EF', NULL, 1, 38.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (34, NULL, '2024-02-07 19:29:18', '8528351', 36, 2, '京N267EF', NULL, 1, 89.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (35, NULL, '2024-02-07 19:29:18', '6497539', 38, 2, '京N267EF', NULL, 1, 34.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (36, NULL, '2024-02-07 19:29:18', '9712904', 36, 2, '京N267EF', NULL, 1, 17.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (37, NULL, '2024-02-07 19:29:18', '8270634', 36, 2, '京N267EF', NULL, 1, 38.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (38, NULL, '2024-02-07 19:29:18', '9558278', 38, 2, '京N267EF', NULL, 1, 19.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (39, NULL, '2024-02-07 19:29:18', '7232909', 36, 2, '京N267EF', NULL, 1, 11.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (40, NULL, '2024-02-07 19:29:18', '4947761', 36, 2, '京N267EF', NULL, 1, 86.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (41, NULL, '2024-02-07 19:29:18', '1471801', 36, 2, '京N267EF', NULL, 1, 85.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (42, NULL, '2024-02-07 19:29:18', '5485469', 36, 2, '京N267EF', NULL, 1, 81.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (43, NULL, '2024-02-07 19:29:18', '2342543', 36, 2, '京N267EF', NULL, 1, 28.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (44, NULL, '2024-02-07 19:29:18', '5230734', 36, 2, '京N267EF', NULL, 1, 57.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (45, NULL, '2024-02-07 19:29:18', '2175632', 36, 2, '京N267EF', NULL, 1, 93.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (46, NULL, '2024-02-07 19:29:18', '5039887', 36, 2, '京N267EF', NULL, 1, 85.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (47, NULL, '2024-02-07 19:29:18', '5472756', 38, 2, '京N267EF', NULL, 1, 59.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (48, NULL, '2024-02-07 19:29:18', '3115599', 36, 2, '京N267EF', NULL, 0, 79.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (49, NULL, '2024-02-07 19:29:18', '5552709', 38, 2, '京N267EF', NULL, 1, 22.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (50, NULL, '2024-02-07 19:29:18', '9557315', 36, 2, '京N267EF', NULL, 1, 56.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (51, NULL, '2024-02-07 19:29:18', '8877496', 38, 2, '京N267EF', NULL, 1, 36.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (52, NULL, '2024-02-07 19:29:18', '5131280', 38, 2, '京N267EF', NULL, 1, 61.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (53, NULL, '2024-02-07 19:29:18', '2328367', 38, 2, '京N267EF', NULL, 1, 37.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (54, NULL, '2024-02-07 19:29:18', '5266517', 36, 2, '京N267EF', NULL, 1, 53.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (55, NULL, '2024-02-07 19:29:18', '8912446', 36, 2, '京N267EF', NULL, 1, 90.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (56, NULL, '2024-02-07 19:29:18', '1032098', 36, 2, '京N267EF', NULL, 1, 49.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (57, NULL, '2024-02-07 19:29:18', '9991595', 38, 2, '京N267EF', NULL, 1, 25.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (58, NULL, '2024-02-07 19:29:18', '1109827', 38, 2, '京N267EF', NULL, 1, 96.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (59, NULL, '2024-02-07 19:29:18', '6237167', 36, 2, '京N267EF', NULL, 1, 43.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (60, NULL, '2024-02-07 19:29:18', '8496962', 36, 2, '京N267EF', NULL, 1, 45.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (61, NULL, '2024-02-07 19:29:18', '2869718', 38, 2, '京N267EF', NULL, 1, 78.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (62, NULL, '2024-02-07 19:29:18', '5371635', 36, 2, '京N267EF', NULL, 0, 78.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (63, NULL, '2024-02-07 19:29:18', '6513363', 38, 2, '京N267EF', NULL, 1, 62.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (64, NULL, '2024-02-07 19:29:18', '7991878', 36, 2, '京N267EF', NULL, 1, 46.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (65, NULL, '2024-02-07 19:29:18', '2305307', 38, 2, '京N267EF', NULL, 1, 75.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (66, NULL, '2024-02-07 19:29:18', '1701931', 36, 2, '京N267EF', NULL, 1, 63.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (67, NULL, '2024-02-07 19:29:18', '5986298', 36, 2, '京N267EF', NULL, 1, 47.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (68, NULL, '2024-02-07 19:29:18', '6827061', 38, 2, '京N267EF', NULL, 1, 47.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (69, NULL, '2024-02-07 19:29:18', '6954291', 36, 2, '京N267EF', NULL, 1, 98.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (70, NULL, '2024-02-07 19:29:18', '7082221', 36, 2, '京N267EF', NULL, 1, 75.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (71, NULL, '2024-02-07 19:29:18', '7080866', 38, 2, '京N267EF', NULL, 1, 18.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (72, NULL, '2024-02-07 19:29:18', '6118481', 38, 2, '京N267EF', NULL, 1, 40.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (73, NULL, '2024-02-07 19:29:18', '7928151', 38, 2, '京N267EF', NULL, 1, 68.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (74, NULL, '2024-02-07 19:29:18', '2731037', 38, 2, '京N267EF', NULL, 1, 44.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (75, NULL, '2024-02-07 19:29:18', '3360036', 36, 2, '京N267EF', NULL, 1, 45.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (76, NULL, '2024-02-07 19:29:18', '2077340', 38, 2, '京N267EF', NULL, 1, 23.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (77, NULL, '2024-02-07 19:29:18', '9080046', 36, 2, '京N267EF', NULL, 1, 45.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (78, NULL, '2024-02-07 19:29:18', '9234309', 38, 2, '京N267EF', NULL, 1, 14.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (79, NULL, '2024-02-07 19:29:18', '4121480', 36, 2, '京N267EF', NULL, 1, 84.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (80, NULL, '2024-02-07 19:29:18', '6002621', 38, 2, '京N267EF', NULL, 1, 51.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (81, NULL, '2024-02-07 19:29:18', '6333106', 38, 2, '京N267EF', NULL, 1, 51.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (82, NULL, '2024-02-07 19:29:18', '2001378', 38, 2, '京N267EF', NULL, 1, 23.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (83, NULL, '2024-02-07 19:29:18', '7192214', 38, 2, '京N267EF', NULL, 1, 70.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (84, NULL, '2024-02-07 19:29:18', '5544392', 38, 2, '京N267EF', NULL, 1, 92.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (85, NULL, '2024-02-07 19:29:18', '2604783', 38, 2, '京N267EF', NULL, 1, 94.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (86, NULL, '2024-02-07 19:29:18', '5189848', 36, 2, '京N267EF', NULL, 1, 82.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (87, NULL, '2024-02-07 19:29:18', '5362068', 36, 2, '京N267EF', NULL, 1, 44.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (88, NULL, '2024-02-07 19:29:18', '7776074', 38, 2, '京N267EF', NULL, 1, 85.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (89, NULL, '2024-02-07 19:29:18', '3432387', 38, 2, '京N267EF', NULL, 1, 83.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (90, NULL, '2024-02-07 19:29:18', '5050641', 36, 2, '京N267EF', NULL, 1, 12.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (91, NULL, '2024-02-07 19:29:18', '9853829', 36, 2, '京N267EF', NULL, 1, 84.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (92, NULL, '2024-02-07 19:29:18', '6272205', 36, 2, '京N267EF', NULL, 1, 23.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (93, NULL, '2024-02-07 19:29:18', '5961208', 36, 2, '京N267EF', NULL, 1, 24.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (94, NULL, '2024-02-07 19:29:18', '3675692', 38, 2, '京N267EF', NULL, 1, 14.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (95, NULL, '2024-02-07 19:29:18', '2819765', 38, 2, '京N267EF', NULL, 1, 79.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (96, NULL, '2024-02-09 15:50:42', '2748251', 38, 2, '京N267EF', NULL, 1, 99.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (97, NULL, '2024-02-07 19:29:18', '6012492', 38, 2, '京N267EF', NULL, 1, 22.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (98, NULL, '2024-02-07 19:29:18', '3661634', 36, 2, '京N267EF', NULL, 1, 100.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (99, NULL, '2024-02-09 12:55:11', '8225979', 38, 2, '京N267EF', NULL, 1, 53.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (100, NULL, '2024-02-09 12:55:11', '3419381', 36, 2, '京N267EF', NULL, 1, 84.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (101, NULL, '2024-02-09 12:55:11', '1421491', 38, 2, '京N267EF', NULL, 1, 14.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (102, NULL, '2024-02-09 12:55:11', '4177735', 38, 2, '京N267EF', NULL, 1, 74.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (103, NULL, '2024-02-09 12:55:11', '3075844', 38, 2, '京N267EF', NULL, 1, 95.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (104, NULL, '2024-02-09 12:55:11', '8226927', 36, 2, '京N267EF', NULL, 1, 55.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (105, NULL, '2024-02-09 12:55:11', '7686803', 38, 2, '京N267EF', NULL, 1, 52.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (106, NULL, '2024-02-09 12:55:11', '5261421', 38, 2, '京N267EF', NULL, 1, 59.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (107, NULL, '2024-02-09 12:55:11', '6253010', 38, 2, '京N267EF', NULL, 1, 20.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (108, NULL, '2024-02-09 12:55:11', '8258415', 36, 2, '京N267EF', NULL, 1, 61.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (109, NULL, '2024-02-09 12:55:11', '5326568', 38, 2, '京N267EF', NULL, 1, 40.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (110, NULL, '2024-02-09 12:55:11', '6321434', 36, 2, '京N267EF', NULL, 1, 44.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (111, NULL, '2024-02-09 12:55:11', '6883347', 38, 2, '京N267EF', NULL, 1, 63.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (112, NULL, '2024-02-09 12:55:11', '5203326', 36, 2, '京N267EF', NULL, 1, 60.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (113, NULL, '2024-02-09 12:55:11', '4936156', 36, 2, '京N267EF', NULL, 1, 38.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (114, NULL, '2024-02-09 12:55:11', '9254360', 36, 2, '京N267EF', NULL, 1, 73.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (115, NULL, '2024-02-09 12:55:11', '7368425', 38, 2, '京N267EF', NULL, 1, 95.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (116, NULL, '2024-02-09 12:55:11', '7115774', 38, 2, '京N267EF', NULL, 1, 27.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (117, NULL, '2024-02-09 12:55:11', '7471274', 38, 2, '京N267EF', NULL, 1, 34.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (118, NULL, '2024-02-09 12:55:11', '6684731', 38, 2, '京N267EF', NULL, 1, 46.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (119, NULL, '2024-02-09 12:55:11', '3152594', 38, 2, '京N267EF', NULL, 1, 20.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (120, NULL, '2024-02-09 12:55:11', '8279549', 36, 2, '京N267EF', NULL, 1, 81.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (121, NULL, '2024-02-09 12:55:11', '6834195', 38, 2, '京N267EF', NULL, 1, 29.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (122, NULL, '2024-02-09 12:55:11', '8209589', 38, 2, '京N267EF', NULL, 1, 77.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (123, NULL, '2024-02-09 12:55:11', '8167128', 38, 2, '京N267EF', NULL, 1, 69.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (124, NULL, '2024-02-09 12:55:11', '6767918', 36, 2, '京N267EF', NULL, 1, 51.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (125, NULL, '2024-02-09 12:55:11', '3483193', 38, 2, '京N267EF', NULL, 1, 64.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (126, NULL, '2024-02-09 12:55:11', '1449147', 38, 2, '京N267EF', NULL, 1, 64.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (127, NULL, '2024-02-09 12:55:11', '1386932', 38, 2, '京N267EF', NULL, 1, 46.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (128, NULL, '2024-02-09 12:55:11', '5641997', 36, 2, '京N267EF', NULL, 1, 13.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (129, NULL, '2024-02-09 12:55:11', '7515281', 36, 2, '京N267EF', NULL, 1, 14.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (130, NULL, '2024-02-09 12:55:11', '2074296', 36, 2, '京N267EF', NULL, 1, 35.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (131, NULL, '2024-02-09 12:55:11', '9700128', 38, 2, '京N267EF', NULL, 1, 87.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (132, NULL, '2024-02-09 12:55:11', '5128516', 36, 2, '京N267EF', NULL, 1, 99.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (133, NULL, '2024-02-09 12:55:11', '8426055', 36, 2, '京N267EF', NULL, 1, 26.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (134, NULL, '2024-02-09 12:55:11', '9655490', 38, 2, '京N267EF', NULL, 1, 45.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (135, NULL, '2024-02-09 12:55:11', '1800333', 36, 2, '京N267EF', NULL, 1, 38.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (136, NULL, '2024-02-09 12:55:11', '6789573', 36, 2, '京N267EF', NULL, 1, 94.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (137, NULL, '2024-02-09 12:55:11', '4472368', 36, 2, '京N267EF', NULL, 1, 95.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (138, NULL, '2024-02-09 12:55:11', '4026063', 38, 2, '京N267EF', NULL, 1, 69.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (139, NULL, '2024-02-09 12:55:11', '3251212', 36, 2, '京N267EF', NULL, 1, 96.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (140, NULL, '2024-02-09 12:55:11', '8427662', 36, 2, '京N267EF', NULL, 1, 10.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (141, NULL, '2024-02-09 12:55:11', '9671098', 36, 2, '京N267EF', NULL, 1, 48.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (142, NULL, '2024-02-09 12:55:11', '7113672', 36, 2, '京N267EF', NULL, 1, 100.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (143, NULL, '2024-02-09 12:55:11', '3240735', 38, 2, '京N267EF', NULL, 1, 32.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (144, NULL, '2024-02-09 12:55:11', '7704326', 36, 2, '京N267EF', NULL, 1, 35.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (145, NULL, '2024-02-09 12:55:11', '7067121', 38, 2, '京N267EF', NULL, 1, 56.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (146, NULL, '2024-02-09 12:55:11', '8828428', 38, 2, '京N267EF', NULL, 1, 31.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (147, NULL, '2024-02-09 12:55:11', '9947894', 38, 2, '京N267EF', NULL, 1, 30.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (148, NULL, '2024-02-09 12:55:11', '5328016', 38, 2, '京N267EF', NULL, 1, 81.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (149, NULL, '2024-02-09 12:55:11', '2875558', 38, 2, '京N267EF', NULL, 1, 37.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (150, NULL, '2024-02-09 12:55:11', '8299777', 36, 2, '京N267EF', NULL, 1, 39.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (151, NULL, '2024-02-09 12:55:11', '2764221', 38, 2, '京N267EF', NULL, 1, 96.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (152, NULL, '2024-02-09 12:55:11', '2110632', 36, 2, '京N267EF', NULL, 1, 34.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (153, NULL, '2024-02-09 12:55:11', '2901811', 38, 2, '京N267EF', NULL, 1, 39.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (154, NULL, '2024-02-09 12:55:11', '7670065', 38, 2, '京N267EF', NULL, 1, 97.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (155, NULL, '2024-02-09 12:55:11', '7224411', 38, 2, '京N267EF', NULL, 1, 76.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (156, NULL, '2024-02-09 12:55:11', '2333722', 38, 2, '京N267EF', NULL, 1, 70.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (157, NULL, '2024-02-09 12:55:11', '5963484', 38, 2, '京N267EF', NULL, 1, 21.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (158, NULL, '2024-02-09 12:55:11', '2725644', 36, 2, '京N267EF', NULL, 1, 44.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (159, NULL, '2024-02-09 12:55:11', '8156739', 36, 2, '京N267EF', NULL, 1, 24.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (160, NULL, '2024-02-09 12:55:11', '7858455', 36, 2, '京N267EF', NULL, 1, 29.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (161, NULL, '2024-02-09 12:55:11', '7507968', 38, 2, '京N267EF', NULL, 1, 31.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (162, NULL, '2024-02-09 12:55:11', '3084028', 36, 2, '京N267EF', NULL, 1, 21.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (163, NULL, '2024-02-09 12:55:11', '2046481', 38, 2, '京N267EF', NULL, 1, 64.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (164, NULL, '2024-02-09 12:55:11', '1465925', 38, 2, '京N267EF', NULL, 1, 43.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (165, NULL, '2024-02-14 10:14:18', '9442793', 36, 2, '京N267EF', NULL, 1, 99.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (166, NULL, '2024-02-09 12:55:11', '6898671', 38, 2, '京N267EF', NULL, 1, 18.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (167, NULL, '2024-02-14 10:14:18', '3448822', 36, 2, '京N267EF', NULL, 1, 39.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (168, NULL, '2024-02-14 10:14:18', '4003171', 36, 2, '京N267EF', NULL, 1, 36.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (169, NULL, '2024-02-14 10:14:18', '5674494', 38, 2, '京N267EF', NULL, 1, 88.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (170, NULL, '2024-02-14 10:14:18', '2852327', 36, 2, '京N267EF', NULL, 1, 54.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (171, NULL, '2024-02-14 10:14:18', '3107165', 38, 2, '京N267EF', NULL, 1, 15.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (172, NULL, '2024-02-14 10:14:18', '3957091', 38, 2, '京N267EF', NULL, 1, 76.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (173, NULL, '2024-02-14 10:14:18', '8843354', 38, 2, '京N267EF', NULL, 1, 40.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (174, NULL, '2024-02-14 10:14:18', '2615317', 36, 2, '京N267EF', NULL, 1, 82.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (175, NULL, '2024-02-14 10:14:18', '7900509', 38, 2, '京N267EF', NULL, 1, 31.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (176, NULL, '2024-02-14 10:14:18', '1171512', 38, 2, '京N267EF', NULL, 1, 35.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (177, NULL, '2024-02-14 10:14:18', '4679256', 36, 2, '京N267EF', NULL, 1, 85.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (178, NULL, '2024-02-14 10:14:18', '6144399', 38, 2, '京N267EF', NULL, 1, 88.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (179, NULL, '2024-02-14 10:14:18', '6603941', 38, 2, '京N267EF', NULL, 1, 47.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (180, NULL, '2024-02-14 10:14:18', '5974349', 36, 2, '京N267EF', NULL, 1, 79.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (181, NULL, '2024-02-14 10:14:18', '4661515', 38, 2, '京N267EF', NULL, 1, 37.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (182, NULL, '2024-02-14 10:14:18', '6538711', 38, 2, '京N267EF', NULL, 1, 15.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (183, NULL, '2024-02-14 10:14:18', '7834755', 36, 2, '京N267EF', NULL, 1, 73.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (184, NULL, '2024-02-14 10:14:18', '7683446', 38, 2, '京N267EF', NULL, 1, 69.00, 3, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (185, NULL, '2024-02-14 10:14:18', '9741551', 36, 2, '京N267EF', NULL, 1, 54.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (186, NULL, '2024-02-14 10:14:18', '6914760', 38, 2, '京N267EF', NULL, 1, 64.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (187, NULL, '2024-02-14 10:14:18', '1628956', 36, 2, '京N267EF', NULL, 1, 85.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (188, NULL, '2024-02-14 10:14:18', '8455797', 36, 2, '京N267EF', NULL, 1, 85.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (189, NULL, '2024-02-14 10:14:18', '6449201', 38, 2, '京N267EF', NULL, 1, 67.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (190, NULL, '2024-02-14 10:14:18', '4808113', 38, 2, '京N267EF', NULL, 1, 47.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (191, NULL, '2024-02-14 10:14:18', '2657873', 36, 2, '京N267EF', NULL, 1, 40.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (192, NULL, '2024-02-14 10:14:18', '2210590', 38, 2, '京N267EF', NULL, 1, 14.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (193, NULL, '2024-02-14 10:14:18', '8167934', 38, 2, '京N267EF', NULL, 1, 53.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (194, NULL, '2024-02-14 10:14:18', '4089428', 38, 2, '京N267EF', NULL, 1, 74.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (195, NULL, '2024-02-14 10:14:18', '5026135', 38, 2, '京N267EF', NULL, 1, 93.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (196, NULL, '2024-02-14 10:14:18', '8611561', 36, 2, '京N267EF', NULL, 1, 69.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (197, NULL, '2024-02-14 10:14:18', '2697764', 38, 2, '京N267EF', NULL, 1, 30.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (198, NULL, '2024-02-14 10:14:18', '1185347', 38, 2, '京N267EF', NULL, 1, 33.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (199, NULL, '2024-02-14 10:14:18', '1571950', 36, 2, '京N267EF', NULL, 1, 37.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (200, NULL, '2024-02-14 10:14:18', '6678961', 38, 2, '京N267EF', NULL, 1, 14.00, 0, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (201, NULL, '2024-02-14 10:14:18', '6887364', 38, 2, '京N267EF', NULL, 1, 16.00, 2, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (202, NULL, '2024-02-14 10:14:18', '7956796', 36, 2, '京N267EF', NULL, 1, 15.00, 1, 1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (203, '临时车辆', '2024-02-14 13:52:33', '2202402', 2, 2, '京N9MB00', NULL, 0, 75.00, 3, -1, '2025-01-01 12:55:11');
+INSERT INTO `app_order` VALUES (204, '临时车辆', '2024-02-14 13:53:01', '2202403', 2, 2, '京N8P8F8', NULL, 0, 150.00, 2, -1, '2025-01-01 12:55:11');
+
+-- ----------------------------
+-- Table structure for app_pay_config
+-- ----------------------------
+DROP TABLE IF EXISTS `app_pay_config`;
+CREATE TABLE `app_pay_config`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `car_park_id` bigint(0) DEFAULT NULL,
+  `gmt_create` datetime(0) DEFAULT NULL,
+  `gmt_modified` datetime(0) DEFAULT NULL,
+  `mch_id` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `secret_key` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `user_id_create` bigint(0) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for sys_config
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_config`;
+CREATE TABLE `sys_config`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `config_key` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '唯一标识',
+  `config_value` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '值',
+  `config_remark` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '备注',
+  `user_id_create` bigint(0) NOT NULL COMMENT '创建人',
+  `gmt_create` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `gmt_modified` timestamp(0) NOT NULL COMMENT '更新时间',
+  `status` tinyint(0) NOT NULL COMMENT '状态 0 禁用 1 可用',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '基础配置' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for sys_interface
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_interface`;
+CREATE TABLE `sys_interface`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `gmt_create` datetime(0) DEFAULT NULL,
+  `gmt_modified` datetime(0) DEFAULT NULL,
+  `params` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `query` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
+  `status` smallint(0) DEFAULT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `user_id_create` bigint(0) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_interface
+-- ----------------------------
+INSERT INTO `sys_interface` VALUES (1, '首页 统计信息', '2024-02-06 17:51:59', NULL, NULL, 'select * from (select count(1) as orgNumber from sys_org) AS a \nJOIN (select count(1) as parkNumber from app_car_park_manage ) as b on 1=1\nJOIN (select count(1) as carNumber from app_car_manage) as c on 1=1\nJOIN (select sum(total_Fee) as cost from app_order where status = 1) as d on 1=1', 1, NULL, 'indexStatistics', 1);
+INSERT INTO `sys_interface` VALUES (2, '支付类型统计', '2024-02-07 11:38:28', NULL, NULL, 'select case type when 0 then \'微信\' when 1 then \'支付宝\' when 2 then \'Apple Pay\' when 3 then \'HUAWEI pay\' end as `name`, count(order_no) as `data` from app_order where status = 1 group by type;', 1, NULL, 'payTypeStatistics', 1);
+INSERT INTO `sys_interface` VALUES (3, '近7天支付情况统计', '2024-02-08 15:55:57', NULL, NULL, 'SELECT a.date, case a.type when 0 then \'微信\' when 1 then \'支付宝\' when 2 then \'Apple Pay\' when 3 then \'HUAWEI pay\' end as payType, ifnull( total_fee, 0 ) amount \nFROM (SELECT * FROM\n	(\n		select DATE(DATE_SUB(CURRENT_DATE, INTERVAL help_topic_id DAY)) date from  mysql.help_topic\nwhere help_topic_id<7\norder by help_topic_id\n	) AS a\n	JOIN ( SELECT DISTINCT type FROM app_order ) AS b ON 1 = 1 \n) AS a\nLEFT JOIN ( \n	SELECT date( gmt_create ) gmt_create, type, sum( total_fee ) total_fee \n	FROM `app_order` WHERE STATUS = 1 GROUP BY date( gmt_create ), type \n) AS b ON a.date = b.gmt_create AND a.type = b.type \nWHERE\n	a.date < DATE(NOW()) \nORDER BY\n	a.date', 1, NULL, 'total7Pay', 1);
+
+-- ----------------------------
+-- Table structure for sys_landing_records
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_landing_records`;
+CREATE TABLE `sys_landing_records`  (
+  `id` int unsigned NOT NULL COMMENT '主键',
+  `user_id` bigint unsigned NOT NULL COMMENT '用户ID',
+  `login_date` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最近登录时间',
+  `place` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '最近登录地点',
+  `ip` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '最近登录IP',
+  `login_way` char(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '登录方式',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户登录日志' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for sys_log
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_log`;
+CREATE TABLE `sys_log`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `user_id` bigint(0) DEFAULT NULL COMMENT '用户id',
+  `username` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '用户名',
+  `operation` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '用户操作',
+  `time` int(0) DEFAULT NULL COMMENT '响应时间',
+  `method` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '请求方法',
+  `params` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci COMMENT '请求参数',
+  `ip` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'IP地址',
+  `device_type` tinyint(0) NOT NULL DEFAULT 0 COMMENT '访问方式 0:PC 1:手机 2:未知',
+  `log_type` tinyint(0) NOT NULL DEFAULT 0 COMMENT '类型 0: 一般日志记录 1: 异常错误日志',
+  `exception_detail` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci COMMENT '异常详细信息',
+  `gmt_create` timestamp(0) DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '系统日志' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_log
+-- ----------------------------
+INSERT INTO `sys_log` VALUES (45, 1, 'admin', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 20:59:34');
+INSERT INTO `sys_log` VALUES (46, 1, '信息21-2李宏福', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 21:21:03');
+INSERT INTO `sys_log` VALUES (47, 1, '信息21-2李宏福', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 21:21:05');
+INSERT INTO `sys_log` VALUES (48, 1, '信息21-2李宏福', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 21:24:26');
+INSERT INTO `sys_log` VALUES (49, 1, '信息21-2李宏福', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 21:27:15');
+INSERT INTO `sys_log` VALUES (50, 2, '普通管理员1号', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 22:14:56');
+INSERT INTO `sys_log` VALUES (51, 1, '信息21-2李宏福', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 22:15:23');
+INSERT INTO `sys_log` VALUES (52, 2, '普通管理员1号', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 22:18:58');
+INSERT INTO `sys_log` VALUES (53, 3, '操作员', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 22:19:39');
+INSERT INTO `sys_log` VALUES (54, 1, '信息21-2李宏福', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 22:20:04');
+INSERT INTO `sys_log` VALUES (55, 2, '普通管理员1号', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 22:26:11');
+INSERT INTO `sys_log` VALUES (56, 1, '超级管理员', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 22:26:58');
+INSERT INTO `sys_log` VALUES (57, 1, '超级管理员', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-13 22:27:00');
+INSERT INTO `sys_log` VALUES (58, 1, '超级管理员', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-14 13:43:07');
+INSERT INTO `sys_log` VALUES (59, 1, '超级管理员', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-14 14:19:57');
+INSERT INTO `sys_log` VALUES (60, 1, '超级管理员', '登录', 10, '', '', '0:0:0:0:0:0:0:1', 0, 0, '', '2024-02-14 15:51:56');
+
+-- ----------------------------
+-- Table structure for sys_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_menu`;
+CREATE TABLE `sys_menu`  (
+  `menu_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '菜单id',
+  `parent_id` bigint(0) DEFAULT NULL COMMENT '父菜单ID，一级菜单为0',
+  `name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '菜单名称',
+  `url` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '菜单URL',
+  `perms` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '授权(多个用逗号分隔，如：user:list,user:create)',
+  `type` int(0) DEFAULT NULL COMMENT '类型   0：目录   1：菜单   2：按钮',
+  `icon` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '菜单图标',
+  `order_num` int(0) DEFAULT NULL COMMENT '排序',
+  `gmt_create` timestamp(0) DEFAULT NULL COMMENT '创建时间',
+  `gmt_modified` timestamp(0) DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`menu_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 317 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '菜单管理' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_menu
+-- ----------------------------
+INSERT INTO `sys_menu` VALUES (1, 0, '系统管理', NULL, '', 0, 'layui-icon layui-icon-template-1', 5, '2017-08-09 22:49:47', '2017-09-11 17:25:22');
+INSERT INTO `sys_menu` VALUES (2, 1, '系统菜单', 'sys/menu/list.html', NULL, 1, 'layui-icon layui-icon-spread-left', 10, '2017-08-09 22:55:15', '2017-08-17 10:00:12');
+INSERT INTO `sys_menu` VALUES (6, 299, '用户管理', 'sys/user/list.html', '', 1, 'layui-icon layui-icon-username', 2, '2017-08-10 14:12:11', '2017-09-05 12:57:42');
+INSERT INTO `sys_menu` VALUES (7, 1, '角色管理', 'sys/role/list.html', '', 1, 'layui-icon layui-icon-tree', 1, '2017-08-10 14:13:19', '2017-09-05 12:57:30');
+INSERT INTO `sys_menu` VALUES (11, 6, '刷新', '/sys/user/list', 'sys:user:list', 2, NULL, 0, '2017-08-14 10:51:05', '2017-09-05 12:47:23');
+INSERT INTO `sys_menu` VALUES (12, 6, '新增', '/sys/user/save', 'sys:user:save', 2, NULL, 0, '2017-08-14 10:51:35', '2017-09-05 12:47:34');
+INSERT INTO `sys_menu` VALUES (13, 6, '编辑', '/sys/user/update', 'sys:user:edit', 2, NULL, 0, '2017-08-14 10:52:06', '2017-09-05 12:47:46');
+INSERT INTO `sys_menu` VALUES (14, 6, '删除', '/sys/user/remove', 'sys:user:remove', 2, NULL, 0, '2017-08-14 10:52:24', '2017-09-05 12:48:03');
+INSERT INTO `sys_menu` VALUES (15, 7, '刷新', '/sys/role/list', 'sys:role:list', 2, NULL, 0, '2017-08-14 10:56:37', '2017-09-05 12:44:04');
+INSERT INTO `sys_menu` VALUES (16, 7, '新增', '/sys/role/save', 'sys:role:save', 2, NULL, 0, '2017-08-14 10:57:02', '2017-09-05 12:44:23');
+INSERT INTO `sys_menu` VALUES (17, 7, '编辑', '/sys/role/update', 'sys:role:edit', 2, NULL, 0, '2017-08-14 10:57:31', '2017-09-05 12:44:48');
+INSERT INTO `sys_menu` VALUES (18, 7, '删除', '/sys/role/remove', 'sys:role:remove', 2, NULL, 0, '2017-08-14 10:57:50', '2017-09-05 12:45:02');
+INSERT INTO `sys_menu` VALUES (19, 7, '操作权限', '/sys/role/authorize/opt', 'sys:role:authorizeOpt', 2, NULL, 0, '2017-08-14 10:58:55', '2017-09-05 12:45:29');
+INSERT INTO `sys_menu` VALUES (20, 2, '刷新', '/sys/menu/list', 'sys:menu:list', 2, NULL, 0, '2017-08-14 10:59:32', '2017-09-05 13:06:24');
+INSERT INTO `sys_menu` VALUES (21, 2, '新增', '/sys/menu/save', 'sys:menu:save', 2, NULL, 0, '2017-08-14 10:59:56', '2017-09-05 13:06:35');
+INSERT INTO `sys_menu` VALUES (22, 2, '编辑', '/sys/menu/update', 'sys:menu:edit', 2, NULL, 0, '2017-08-14 11:00:26', '2017-09-05 13:06:48');
+INSERT INTO `sys_menu` VALUES (23, 2, '删除', '/sys/menu/remove', 'sys:menu:remove', 2, NULL, 0, '2017-08-14 11:00:58', '2017-09-05 13:07:00');
+INSERT INTO `sys_menu` VALUES (24, 6, '启用', '/sys/user/enable', 'sys:user:enable', 2, NULL, 0, '2017-08-14 17:27:18', '2017-09-05 12:48:30');
+INSERT INTO `sys_menu` VALUES (25, 6, '停用', '/sys/user/disable', 'sys:user:disable', 2, NULL, 0, '2017-08-14 17:27:43', '2017-09-05 12:48:49');
+INSERT INTO `sys_menu` VALUES (26, 6, '重置密码', '/sys/user/rest', 'sys:user:resetPassword', 2, NULL, 0, '2017-08-14 17:28:34', '2017-09-05 12:49:17');
+INSERT INTO `sys_menu` VALUES (27, 267, '系统日志', 'sys/log/list.html', NULL, 1, 'fa fa-warning', 3, '2017-08-14 22:11:53', '2017-08-17 09:55:19');
+INSERT INTO `sys_menu` VALUES (28, 27, '刷新', '/sys/log/list', 'sys:log:list', 2, NULL, 0, '2017-08-14 22:30:22', '2017-09-05 13:05:24');
+INSERT INTO `sys_menu` VALUES (29, 27, '删除', '/sys/log/remove', 'sys:log:remove', 2, NULL, 0, '2017-08-14 22:30:43', '2017-09-05 13:05:37');
+INSERT INTO `sys_menu` VALUES (30, 27, '清空', '/sys/log/clear', 'sys:log:clear', 2, NULL, 0, '2017-08-14 22:31:02', '2017-09-05 13:05:53');
+INSERT INTO `sys_menu` VALUES (42, 261, '刷新', '/sys/org/list', 'sys:org:list', 2, NULL, 0, '2017-08-17 10:03:36', '2017-09-05 11:47:37');
+INSERT INTO `sys_menu` VALUES (43, 261, '新增', '/sys/org/save', 'sys:org:save', 2, NULL, 0, '2017-08-17 10:03:54', '2017-09-05 12:40:55');
+INSERT INTO `sys_menu` VALUES (44, 261, '编辑', '/sys/org/update', 'sys:org:edit', 2, NULL, 0, '2017-08-17 10:04:11', '2017-09-05 12:43:06');
+INSERT INTO `sys_menu` VALUES (45, 261, '删除', '/sys/org/remove', 'sys:org:remove', 2, NULL, 0, '2017-08-17 10:04:30', '2017-09-05 12:42:19');
+INSERT INTO `sys_menu` VALUES (46, 7, '数据权限', '/sys/role/authorize/data', 'sys:role:authorizeData', 2, NULL, 0, '2017-08-17 13:48:11', '2017-09-05 12:45:54');
+INSERT INTO `sys_menu` VALUES (261, 299, '合作单位', '/sys/org/list.html', NULL, 1, 'layui-icon layui-icon-friends', 3, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (264, 1, '全局配置', 'sys/config/list.html', NULL, 1, 'layui-icon layui-icon-templeate-1', 40, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (267, 0, '系统监控', NULL, NULL, 0, 'layui-icon layui-icon-camera', 40, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (295, 0, '停车场管理', NULL, NULL, 0, 'layui-icon layui-icon-diamond', 0, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (296, 295, '停车场管理', 'car/parkManage/list.html', NULL, 1, 'layui-icon layui-icon-set', 1, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (299, 0, '账户管理', NULL, NULL, 0, 'layui-icon layui-icon-username', 10, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (300, 0, '车场管理', NULL, NULL, 0, 'layui-icon layui-icon-release', 3, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (301, 300, '车辆管理', 'car/carManage/list.html', NULL, 1, 'layui-icon layui-icon-release', 1, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (302, 0, '停车记录', NULL, NULL, 0, 'layui-icon layui-icon-file-b', 4, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (303, 302, '停车记录', 'car/parkingRecord/list.html', NULL, 1, 'layui-icon layui-icon-location', 1, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (304, 0, '车牌识别', '', NULL, 0, 'layui-icon layui-icon-camera-fill', 1, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (305, 304, '车牌识别', 'car/distinguish/list.html', NULL, 1, 'layui-icon layui-icon-camera-fill', 1, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (310, 0, '控制台管理', NULL, NULL, 0, 'layui-icon layui-icon-form', 6, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (312, 310, '统计管理', '/sys/interface/list.html', NULL, 1, 'layui-icon layui-icon-template', NULL, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (313, 312, '查询', '/sys/interface/list', 'sys:interface:list', 2, 'layui-icon layui-icon-template', NULL, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (314, 0, '财务管理', NULL, NULL, 0, 'layui-icon layui-icon-app', 7, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (315, 314, '订单列表', '/finance/list.html', NULL, 1, 'layui-icon layui-icon-theme', NULL, NULL, NULL);
+INSERT INTO `sys_menu` VALUES (316, 315, '查询', '/finance/order/list', 'finance:order:list', 2, '', NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for sys_org
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_org`;
+CREATE TABLE `sys_org`  (
+  `org_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '机构id',
+  `parent_id` bigint(0) DEFAULT NULL COMMENT '上级机构ID，一级机构为0',
+  `code` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '机构编码',
+  `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '机构名称',
+  `full_name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '机构名称(全称)',
+  `director` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '机构负责人',
+  `email` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '联系邮箱',
+  `phone` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '联系电话',
+  `address` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '地址',
+  `order_num` int(0) DEFAULT NULL COMMENT '排序',
+  `status` tinyint(0) DEFAULT 1 COMMENT '可用标识  1：可用  0：不可用',
+  `gmt_create` timestamp(0) DEFAULT NULL COMMENT '创建时间',
+  `gmt_modified` timestamp(0) DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`org_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '机构管理' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_org
+-- ----------------------------
+INSERT INTO `sys_org` VALUES (1, 0, '0001', '北京林业大学', '北京林业大学', '', NULL, NULL, NULL, NULL, 1, '2024-01-03 15:06:58', '2024-01-03 22:07:03');
+INSERT INTO `sys_org` VALUES (2, 1, '00011', '北京林业大学东区', '北京林业大学东区', NULL, NULL, NULL, NULL, NULL, 1, '2024-01-03 16:17:32', '2024-01-03 19:44:25');
+INSERT INTO `sys_org` VALUES (3, 1, '00012', '北京林业大学西区', '北京林业大学西区', NULL, NULL, NULL, NULL, NULL, 1, '2024-01-01 21:34:39', '2024-01-03 21:34:50');
+INSERT INTO `sys_org` VALUES (4, 0, '0002', '静淑苑小区', '静淑苑小区', NULL, NULL, NULL, NULL, NULL, 1, '2024-01-10 21:35:28', '2024-01-10 21:35:32');
+INSERT INTO `sys_org` VALUES (5, 0, '0003', '五道口购物中心', '五道口购物中心', NULL, NULL, NULL, NULL, NULL, 1, '2024-01-11 21:36:06', '2024-01-11 21:36:11');
+INSERT INTO `sys_org` VALUES (6, 0, '0004', '金码大厦', '金码大厦', NULL, NULL, NULL, NULL, NULL, 1, '2024-01-13 21:36:32', '2024-01-14 21:36:38');
+INSERT INTO `sys_org` VALUES (7, 0, '0005', '弘彧大厦', '弘彧大厦', NULL, NULL, NULL, NULL, NULL, 1, '2024-02-14 21:37:06', '2024-02-15 21:37:10');
+
+-- ----------------------------
+-- Table structure for sys_role
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role`;
+CREATE TABLE `sys_role`  (
+  `role_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '角色id',
+  `org_id` bigint(0) DEFAULT NULL COMMENT '所属机构',
+  `role_name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '角色名称',
+  `role_sign` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '角色标识',
+  `remark` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
+  `user_id_create` bigint(0) DEFAULT NULL COMMENT '创建用户id',
+  `gmt_create` timestamp(0) DEFAULT NULL COMMENT '创建时间',
+  `gmt_modified` timestamp(0) DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`role_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '系统角色' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_role
+-- ----------------------------
+INSERT INTO `sys_role` VALUES (1, -1, '超级管理员', 'admin', '系统内置', 1, '2024-02-01 00:43:52', '2024-02-13 22:04:22');
+INSERT INTO `sys_role` VALUES (8, -1, '操作员', '002', NULL, 1, '2024-02-13 22:04:05', '2024-02-13 22:04:05');
+INSERT INTO `sys_role` VALUES (9, -1, '普通管理员', '001', NULL, 1, '2024-02-12 22:12:11', '2024-02-13 22:03:59');
+
+-- ----------------------------
+-- Table structure for sys_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role_menu`;
+CREATE TABLE `sys_role_menu`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `role_id` bigint(0) DEFAULT NULL COMMENT '角色ID',
+  `menu_id` bigint(0) DEFAULT NULL COMMENT '菜单ID',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 15027 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '角色与菜单对应关系' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_role_menu
+-- ----------------------------
+INSERT INTO `sys_role_menu` VALUES (14980, 1, 295);
+INSERT INTO `sys_role_menu` VALUES (14981, 1, 296);
+INSERT INTO `sys_role_menu` VALUES (14982, 1, 304);
+INSERT INTO `sys_role_menu` VALUES (14983, 1, 305);
+INSERT INTO `sys_role_menu` VALUES (14984, 1, 300);
+INSERT INTO `sys_role_menu` VALUES (14985, 1, 301);
+INSERT INTO `sys_role_menu` VALUES (14986, 1, 302);
+INSERT INTO `sys_role_menu` VALUES (14987, 1, 303);
+INSERT INTO `sys_role_menu` VALUES (14988, 1, 1);
+INSERT INTO `sys_role_menu` VALUES (14989, 1, 7);
+INSERT INTO `sys_role_menu` VALUES (14990, 1, 15);
+INSERT INTO `sys_role_menu` VALUES (14991, 1, 16);
+INSERT INTO `sys_role_menu` VALUES (14992, 1, 17);
+INSERT INTO `sys_role_menu` VALUES (14993, 1, 18);
+INSERT INTO `sys_role_menu` VALUES (14994, 1, 19);
+INSERT INTO `sys_role_menu` VALUES (14995, 1, 46);
+INSERT INTO `sys_role_menu` VALUES (14996, 1, 2);
+INSERT INTO `sys_role_menu` VALUES (14997, 1, 20);
+INSERT INTO `sys_role_menu` VALUES (14998, 1, 21);
+INSERT INTO `sys_role_menu` VALUES (14999, 1, 22);
+INSERT INTO `sys_role_menu` VALUES (15000, 1, 23);
+INSERT INTO `sys_role_menu` VALUES (15001, 1, 264);
+INSERT INTO `sys_role_menu` VALUES (15002, 1, 310);
+INSERT INTO `sys_role_menu` VALUES (15003, 1, 312);
+INSERT INTO `sys_role_menu` VALUES (15004, 1, 313);
+INSERT INTO `sys_role_menu` VALUES (15005, 1, 314);
+INSERT INTO `sys_role_menu` VALUES (15006, 1, 315);
+INSERT INTO `sys_role_menu` VALUES (15007, 1, 316);
+INSERT INTO `sys_role_menu` VALUES (15008, 1, 299);
+INSERT INTO `sys_role_menu` VALUES (15009, 1, 6);
+INSERT INTO `sys_role_menu` VALUES (15010, 1, 11);
+INSERT INTO `sys_role_menu` VALUES (15011, 1, 12);
+INSERT INTO `sys_role_menu` VALUES (15012, 1, 13);
+INSERT INTO `sys_role_menu` VALUES (15013, 1, 14);
+INSERT INTO `sys_role_menu` VALUES (15014, 1, 24);
+INSERT INTO `sys_role_menu` VALUES (15015, 1, 25);
+INSERT INTO `sys_role_menu` VALUES (15016, 1, 26);
+INSERT INTO `sys_role_menu` VALUES (15017, 1, 261);
+INSERT INTO `sys_role_menu` VALUES (15018, 1, 42);
+INSERT INTO `sys_role_menu` VALUES (15019, 1, 43);
+INSERT INTO `sys_role_menu` VALUES (15020, 1, 44);
+INSERT INTO `sys_role_menu` VALUES (15021, 1, 45);
+INSERT INTO `sys_role_menu` VALUES (15022, 1, 267);
+INSERT INTO `sys_role_menu` VALUES (15023, 1, 27);
+INSERT INTO `sys_role_menu` VALUES (15024, 1, 28);
+INSERT INTO `sys_role_menu` VALUES (15025, 1, 29);
+INSERT INTO `sys_role_menu` VALUES (15026, 1, 30);
+INSERT INTO `sys_role_menu` VALUES (15071, 9, 295);
+INSERT INTO `sys_role_menu` VALUES (15072, 9, 296);
+INSERT INTO `sys_role_menu` VALUES (15073, 9, 304);
+INSERT INTO `sys_role_menu` VALUES (15074, 9, 305);
+INSERT INTO `sys_role_menu` VALUES (15075, 9, 300);
+INSERT INTO `sys_role_menu` VALUES (15076, 9, 301);
+INSERT INTO `sys_role_menu` VALUES (15077, 9, 302);
+INSERT INTO `sys_role_menu` VALUES (15078, 9, 303);
+INSERT INTO `sys_role_menu` VALUES (15079, 9, 314);
+INSERT INTO `sys_role_menu` VALUES (15080, 9, 315);
+INSERT INTO `sys_role_menu` VALUES (15081, 9, 316);
+INSERT INTO `sys_role_menu` VALUES (15082, 9, 267);
+INSERT INTO `sys_role_menu` VALUES (15083, 9, 27);
+INSERT INTO `sys_role_menu` VALUES (15084, 9, 28);
+INSERT INTO `sys_role_menu` VALUES (15085, 9, 29);
+INSERT INTO `sys_role_menu` VALUES (15086, 9, 30);
+INSERT INTO `sys_role_menu` VALUES (15087, 8, 295);
+INSERT INTO `sys_role_menu` VALUES (15088, 8, 296);
+INSERT INTO `sys_role_menu` VALUES (15089, 8, 304);
+INSERT INTO `sys_role_menu` VALUES (15090, 8, 305);
+INSERT INTO `sys_role_menu` VALUES (15091, 8, 300);
+INSERT INTO `sys_role_menu` VALUES (15092, 8, 301);
+INSERT INTO `sys_role_menu` VALUES (15093, 8, 302);
+INSERT INTO `sys_role_menu` VALUES (15094, 8, 303);
+
+-- ----------------------------
+-- Table structure for sys_role_org
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role_org`;
+CREATE TABLE `sys_role_org`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `role_id` bigint(0) DEFAULT NULL COMMENT '角色ID',
+  `org_id` bigint(0) DEFAULT NULL COMMENT '机构ID',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '角色与机构对应关系' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_role_org
+-- ----------------------------
+INSERT INTO `sys_role_org` VALUES (17, 1, 17);
+
+-- ----------------------------
+-- Table structure for sys_user
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user`;
+CREATE TABLE `sys_user`  (
+  `user_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `org_id` bigint(0) NOT NULL COMMENT '所属机构',
+  `username` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '用户名',
+  `password` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '密码',
+  `nickname` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '姓名(昵称)',
+  `email` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '邮箱',
+  `mobile` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '手机号',
+  `status` tinyint(0) DEFAULT NULL COMMENT '状态 0:禁用，1:正常',
+  `avatar_status` tinyint(0) NOT NULL DEFAULT 0 COMMENT '头像上传 0:未上传 1:上传',
+  `remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
+  `user_id_create` bigint(0) DEFAULT NULL COMMENT '创建用户id',
+  `gmt_create` timestamp(0) DEFAULT NULL COMMENT '创建时间',
+  `gmt_modified` timestamp(0) DEFAULT NULL COMMENT '修改时间',
+  `is_modify_pwd` tinyint(0) DEFAULT 0 COMMENT '是否修改过初始密码',
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '系统用户' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_user
+-- ----------------------------
+INSERT INTO `sys_user` VALUES (1, 36, 'admin', '4cf28b576b2af52c9441d653e5a79917', '超级管理员', '3013562705@qq.com', '17611090137', 1, 0, NULL, 1, '2024-01-04 21:40:39', '2024-02-13 21:39:33', 1);
+INSERT INTO `sys_user` VALUES (2, 1, '001', '280d2336af584d78b0d64cced01b3a18', '普通管理员1号', '2088741659@qq.com', '17680928910', 1, 0, NULL, 1, '2024-02-13 22:06:09', '2024-02-13 22:20:42', NULL);
+INSERT INTO `sys_user` VALUES (3, 1, '002', '94b23f02d1a8e4a9652efccca61c8ab4', '操作员1号', '2038902121@163.com', '19876210987', 1, 0, NULL, 1, '2024-02-13 22:07:08', '2024-02-13 22:23:13', NULL);
+
+-- ----------------------------
+-- Table structure for sys_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user_role`;
+CREATE TABLE `sys_user_role`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `user_id` bigint(0) DEFAULT NULL COMMENT '用户ID',
+  `role_id` bigint(0) DEFAULT NULL COMMENT '角色ID',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 266 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户与角色对应关系' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_user_role
+-- ----------------------------
+INSERT INTO `sys_user_role` VALUES (266, 1, 1);
+INSERT INTO `sys_user_role` VALUES (271, 2, 9);
+INSERT INTO `sys_user_role` VALUES (272, 3, 8);
+
+SET FOREIGN_KEY_CHECKS = 1;
